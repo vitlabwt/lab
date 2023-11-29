@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search and Sort Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Add your styles here */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Search and Sort Demo</h1>
+
+    <label for="searchInput">Search:</label>
+    <input type="text" id="searchInput" placeholder="Enter a number">
+    <button onclick="search()">Search</button>
+
+    <ul id="numberList">
+        <!-- Array elements will be displayed here -->
+    </ul>
+
+    <button onclick="sort()">Sort</button>
+
+    <script>
+        // Sample array of integers
+        var numbers = [10, 5, 8, 15, 2, 12, 7, 3];
+
+        // Function to display the array elements in an unordered list
+        function displayNumbers() {
+            var list = $("#numberList");
+            list.empty();
+
+            $.each(numbers, function (index, number) {
+                var listItem = $("<li>").text(number);
+                list.append(listItem);
+            });
+
+        }
+
+        // Initial display of numbers
+        displayNumbers();
+
+        // Function to search for a number in the array
+        function search() {
+            var searchTerm = $("#searchInput").val();
+            var searchTermInt = parseInt(searchTerm);
+
+            if (!isNaN(searchTermInt)) {
+                var foundIndex = numbers.indexOf(searchTermInt);
+
+                if (foundIndex !== -1) {
+                    alert(searchTermInt + " found at index " + foundIndex);
+                } else {
+                    alert(searchTermInt + " not found in the array");
+                }
+            } else {
+                alert("Please enter a valid number for search");
+            }
+        }
+
+        // Function to sort the array
+        function sort() {
+            numbers.sort(function (a, b) {
+                return a - b;
+            });
+
+            // Display the sorted array
+            displayNumbers();
+        }
+    </script>
+</body>
+
+</html>

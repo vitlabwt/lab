@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Copy Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+
+    <h2>Copying Contents from one List to Another using jQuery</h2>
+
+    <p>List1: <span id="list1Text">Item 1, Item 2, Item 3</span></p>
+    <ul id="list1">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <button id="copyButton">Copy List</button>
+
+    <p>List2: <span id="list2Text">Empty</span></p>
+    <ul id="list2">
+        <!-- Empty list to display copied content -->
+    </ul>
+
+    <script>
+        $(document).ready(function () {
+            $("#copyButton").on("click", function () {
+                // Copy contents from list1 to list2
+                $("#list1 li").clone().appendTo("#list2");
+                // Update the text to indicate the new state of lists
+                $("#list2Text").text($("#list1Text").text());
+            });
+        });
+    </script>
+
+</body>
+
+</html>
